@@ -44,11 +44,11 @@ function prompt(res) {
 				name:"actionQuantity",
 				message: "How much of this item would you like to buy?"
 			}]).then(function(answer){
-				if ((res[selection].stock_quantity-(answer.actionQuantity))>0) {
-					connection.query("UPDATE products SET stock_quantity='"+((res[selection].stock_quantity-(answer.actionQuantity))+"' WHERE item_id='"+selection+"'"));
+				if ((res[selection - 1].stock_quantity-(answer.actionQuantity))>0) {
+					connection.query("UPDATE products SET stock_quantity='"+((res[selection - 1].stock_quantity-(answer.actionQuantity))+"' WHERE item_id='"+selection+"'"));
 					console.log("Order Successful!");
-					console.log(res[selection].price);
-					console.log("Your total cost is $"+(res[selection].price)*(answer.actionQuantity));
+					console.log(res[selection - 1].price);
+					console.log("Your total cost is $"+(res[selection - 1].price)*(answer.actionQuantity));
 					displayAll();
 				} else {
 					console.log("Insufficient Quantity!");
